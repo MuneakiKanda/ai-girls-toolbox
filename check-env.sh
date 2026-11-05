@@ -17,7 +17,12 @@ if [ -r /etc/os-release ]; then
   . /etc/os-release
   echo "- ディストリビューション: ${PRETTY_NAME:-unknown}"
 fi
-echo "- シェル: ${SHELL:-unknown}"
+if [ -n "$SHELL" ]; then
+  echo "- ログインシェル(\$SHELL): $SHELL"
+else
+  echo "- ログインシェル(\$SHELL): 未設定（シェルがないという意味ではない）"
+fi
+echo "- 実行中のシェル: $(ps -p $$ -o comm= 2>/dev/null || readlink /proc/$$/exe 2>/dev/null || echo 不明)"
 echo
 
 echo "## 権限"
