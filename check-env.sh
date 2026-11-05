@@ -6,6 +6,7 @@ have() { command -v "$1" >/dev/null 2>&1; }
 
 echo "# 環境レポート"
 echo
+echo "- 判定: PASS / FAIL / BLOCKED（いずれか一つを残して書き換えてください）"
 echo "- 日時: $(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)"
 echo
 
